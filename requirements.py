@@ -135,7 +135,7 @@ def find_unsubmitted(date, students_names, submissions):
     if valid_list == []:
         return valid_list
 
-    return [student for student in students_name if student not in completed_list]
+    return [student for student in students_names if student not in completed_list]
 
 
 def get_average_score(submissions):
@@ -185,6 +185,3 @@ def get_average_score_by_module(submissions):
         modules_averages[module] = round(scores[module] / counts[module], 1)
 
     return modules_averages
-
-
-print(find_unsubmitted("2024-11-20", ["Dan", "James"], list_of_subs))
