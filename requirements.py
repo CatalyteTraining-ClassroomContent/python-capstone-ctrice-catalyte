@@ -66,13 +66,13 @@ def filter_by_date(date, Submissions):
 
 def filter_by_student_id(studentId, submissions):
     """
-    Filter through the students id and get list
+    Filter through the students id and get list.
 
     Parameters:
         studentId(number), submissions(list of dictionaries): A list of numerical and string values.
 
     Returns:
-        list: A list of dictionaries
+        list: A list of dictionaries.
     """
     list_of_studentsIds = []
     for submission in submissions:
@@ -85,15 +85,15 @@ def filter_by_student_id(studentId, submissions):
     return list_of_studentsIds
 
 
-def get_students_name(submissions):
+def get_students_names(submissions):
     """
-    Give you students names out of the list of dictionaries
+    Give you students names out of the list of dictionaries.
 
     Parameters:
          submissions (list of dictionaries): A list of numerical and string values.
 
     Returns:
-        list: A list of all the students
+        list: A list of all the students names.
     """
     new_list = []
     for submission in submissions:
@@ -101,23 +101,46 @@ def get_students_name(submissions):
     return new_list
 
 
-def find_unsubmitted(date, students_name, submissions):
+def valid_students_names(submissions, students_names):
     """
-     Will find all the unsubmitted date
+    Make sure input that was recieve has names in the list of submissions.
+
+    Parameters:
+        submissions(list of dictonaries), student_names(list of a strings).
+
+    Returns:
+        list: A list of all the students names in the submission.
+    """
+    valid_names = []
+    for submission in submissions:
+        for student in students_names:
+            if student == submission["studentName"]:
+                valid_names.append(submission["studentName"])
+    return valid_names
+
+
+def find_unsubmitted(date, students_names, submissions):
+    """
+     Will find all the unsubmitted date.
 
      Parameters:
         date(a string), student_name(a list of strings), submissions(list of dictionaries): A list of numerical and string values.
 
     Returns:
-        list: A list of all unsubmitted students
+        list: A list of all unsubmitted students.
     """
     completed_list = filter_by_date(date, submissions)
+    valid_list = valid_students_names(submissions, students_names)
+
+    if valid_list == []:
+        return valid_list
+
     return [student for student in students_name if student not in completed_list]
 
 
 def get_average_score(submissions):
     """
-    Calculates the average of each list of submissions of quiz scores.
+    Calculates the average of each list of submissions quiz scores.
 
     Parameters:
         submissions (list of dictionaries): A list of numerical and string values.
@@ -126,12 +149,12 @@ def get_average_score(submissions):
         float: average of all the quiz scores.
     """
     total = 0
-    l = 0
+    count = 0
     for submission in submissions:
         total += submission["quizScore"]
-        l += 1
+        count += 1
 
-    return round(total / l, 1)
+    return round(total / count, 1)
 
 
 def get_average_score_by_module(submissions):
@@ -142,7 +165,7 @@ def get_average_score_by_module(submissions):
         submissions (list of dictionaries): A list of numerical and string values.
 
     Returns:
-        list: a list of dictionaries with the average score for each module
+        list: a list of dictionaries with the average score for each module.
     """
     modules_averages = {}
     counts = {}
@@ -164,4 +187,4 @@ def get_average_score_by_module(submissions):
     return modules_averages
 
 
-print(get_average_score_by_module(list_of_subs))
+print(find_unsubmitted("2024-11-20", ["Dan", "James"], list_of_subs))
