@@ -24,7 +24,7 @@ list_of_subs = [
         "submissionDate": "2024-10-23",
     },
     {
-        "quizName": "Math with functions",
+        "quizName": "Arithmetic",
         "quizModule": "Math",
         "quizScore": 85,
         "studentId": 2,
