@@ -121,10 +121,10 @@ def get_average_score_by_module(submissions):
         scores[module] += score
         counts[module] += 1
 
-    # for submission in submissions:
-    #     modules_averages[submission["quizModule"]] = submission["quizScore"]
+    for module in scores:
+        modules_averages[module] = round(scores[module] / counts[module], 1)
 
     return modules_averages
 
 
-get_average_score_by_module(list_of_subs)
+print(get_average_score_by_module(list_of_subs))
