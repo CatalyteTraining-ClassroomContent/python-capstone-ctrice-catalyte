@@ -8,6 +8,14 @@ list_of_subs = [
         "submissionDate": "2025-07-08",
     },
     {
+        "quizName": "Periodiac table",
+        "quizModule": "Science",
+        "quizScore": 60,
+        "studentId": 4,
+        "studentName": "Kate",
+        "submissionDate": "2024-2-13",
+    },
+    {
         "quizName": "World history",
         "quizModule": "History",
         "quizScore": 80,
@@ -61,7 +69,10 @@ def filter_by_student_id(studentId, submissions):
     Filter through the students id and get list
 
     Parameters:
+        studentId(number), submissions(list of dictionaries): A list of numerical and string values.
 
+    Returns:
+        list: A list of dictionaries
     """
     list_of_studentsIds = []
     for submission in submissions:
@@ -75,6 +86,15 @@ def filter_by_student_id(studentId, submissions):
 
 
 def get_students_name(submissions):
+    """
+    Give you students names out of the list of dictionaries
+
+    Parameters:
+         submissions (list of dictionaries): A list of numerical and string values.
+
+    Returns:
+        list: A list of all the students
+    """
     new_list = []
     for submission in submissions:
         new_list.append(submission["studentName"])
@@ -82,7 +102,15 @@ def get_students_name(submissions):
 
 
 def find_unsubmitted(date, students_name, submissions):
-    """ """
+    """
+     Will find all the unsubmitted date
+
+     Parameters:
+        date(a string), student_name(a list of strings), submissions(list of dictionaries): A list of numerical and string values.
+
+    Returns:
+        list: A list of all unsubmitted students
+    """
     completed_list = filter_by_date(date, submissions)
     return [student for student in students_name if student not in completed_list]
 
@@ -107,6 +135,15 @@ def get_average_score(submissions):
 
 
 def get_average_score_by_module(submissions):
+    """
+    Calculate the average of each quiz score in the module out of the list of submissions.
+
+    Parameters:
+        submissions (list of dictionaries): A list of numerical and string values.
+
+    Returns:
+        list: a list of dictionaries with the average score for each module
+    """
     modules_averages = {}
     counts = {}
     scores = {}
